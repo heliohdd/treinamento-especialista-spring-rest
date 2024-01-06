@@ -13,6 +13,7 @@ public class Cozinha {
 
 	@Id
 	private Long id;
+
 	@Column(name = "nom_cozinha")
 	private String nome;
 
