@@ -1,26 +1,26 @@
-package com.algaworks.algafood.jpa;
+package com.algaworks.algafood.jpa.formaPagamento;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
-import com.algaworks.algafood.domain.model.Cozinha;
-import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.model.Estado;
+import com.algaworks.algafood.domain.repository.EstadoRepository;
 
-public class ExclusaoCozinhaMain {
+public class ExclusaoEstadoMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
 		@SuppressWarnings("unused")
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		EstadoRepository estados = applicationContext.getBean(EstadoRepository.class);
 
-		Cozinha cozinha1 = new Cozinha();
-		cozinha1.setId(1L);
+		Estado estado = new Estado();
+		estado.setId(1L);
 
-		/* cozinhaRepository.remover(cozinha); */
+		/* estados.remover(estado); */
 
 	}
 

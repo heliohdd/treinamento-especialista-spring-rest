@@ -19,10 +19,13 @@ public class AlteracaoRestauranteMain {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(1L);
 		restaurante.setNome("Africano");
-		restaurante.setTaxaFrete(null);
+		/*
+		 * BigDecimal bd = new BigDecimal("4.5"); restaurante.setTaxaFrete(bd);
+		 */
 		
+		System.out.println(restauranteRepository);
 
-		restauranteRepository.adicionar(restaurante);
+		/* restauranteRepository.salvar(restaurante); */
 
 	}
 

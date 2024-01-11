@@ -14,6 +14,7 @@ public class InclusaoRestauranteMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
+		@SuppressWarnings("unused")
 		RestauranteRepository cadastroRestaurante = applicationContext.getBean(RestauranteRepository.class);
 
 		Restaurante restaurante1 = new Restaurante();
@@ -22,8 +23,10 @@ public class InclusaoRestauranteMain {
 		Restaurante restaurante2 = new Restaurante();
 		restaurante2.setNome("Japonesa");
 
-		restaurante1 = cadastroRestaurante.adicionar(restaurante1);
-		restaurante2 = cadastroRestaurante.adicionar(restaurante2);
+		/*
+		 * restaurante1 = cadastroRestaurante.salvar(restaurante1); restaurante2 =
+		 * cadastroRestaurante.salvar(restaurante2);
+		 */
 		
 		System.out.printf("%d - %s\n", restaurante1.getId(), restaurante1.getNome());
 		System.out.printf("%d - %s\n", restaurante2.getId(), restaurante2.getNome());

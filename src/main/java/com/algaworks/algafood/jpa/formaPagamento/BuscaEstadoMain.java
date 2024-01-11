@@ -1,25 +1,25 @@
-package com.algaworks.algafood.jpa;
+package com.algaworks.algafood.jpa.formaPagamento;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
-import com.algaworks.algafood.domain.model.Restaurante;
-import com.algaworks.algafood.domain.repository.RestauranteRepository;
+import com.algaworks.algafood.domain.model.Estado;
+import com.algaworks.algafood.domain.repository.EstadoRepository;
 
-public class BuscaRestauranteMain {
+public class BuscaEstadoMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		RestauranteRepository restauranteRepository = applicationContext.getBean(RestauranteRepository.class);
+		EstadoRepository estadoRepository = applicationContext.getBean(EstadoRepository.class);
 		
-		Restaurante restaurante = restauranteRepository.buscar(1L);
+		Estado estado = estadoRepository.buscar(1L);
 		
-		System.out.println(restaurante.getNome());
+		System.out.println(estado.getNome());
 
 	}
 

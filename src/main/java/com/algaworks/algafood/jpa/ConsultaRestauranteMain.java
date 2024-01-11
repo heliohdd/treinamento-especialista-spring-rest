@@ -18,7 +18,7 @@ public class ConsultaRestauranteMain {
 
 		RestauranteRepository restaurantes = applicationContext.getBean(RestauranteRepository.class);
 
-		List<Restaurante> todosRestaurantes = restaurantes.todos();
+		List<Restaurante> todosRestaurantes = restaurantes.listar();
 
 		for (Restaurante restaurante : todosRestaurantes) {
 			System.out.printf("%s - %f - %s\n", restaurante.getNome(), restaurante.getTaxaFrete(),
