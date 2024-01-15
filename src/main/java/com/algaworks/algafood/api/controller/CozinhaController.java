@@ -31,7 +31,7 @@ public class CozinhaController {
 		return cozinhaRepository.listar();
 	}
 
-	@GetMapping("/{cozinhaId}")
+	@GetMapping(value = "/{cozinhaId}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public Cozinha buscar(@PathVariable Long cozinhaId) {
 		System.out.println("Valor da variável cozinhaId: " + cozinhaId+ ";");
 		return cozinhaRepository.buscar(cozinhaId);
