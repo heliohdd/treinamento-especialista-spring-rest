@@ -1,6 +1,6 @@
 package com.algaworks.algafood.domain.exception;
 
-public class CozinhaNaoEncontradaException extends EntidadeNaoEncontradaException {
+public class CozinhaNaoEncontradaException extends EntidadeNaoEncontrada {
 
 	private static final long serialVersionUID = 1L;
 
