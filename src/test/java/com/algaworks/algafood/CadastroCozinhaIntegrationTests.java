@@ -12,6 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 
+// Sugestão padrão nome métodos
+// givenJaExisteCozinhaChinesa_WhenCadastroCozinhaChinesa_ThenDeveFalhar()
+// shouldComportamentoEsperado_WhenEstadoEmTeste()
+// deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos()
+
 @SpringBootTest
 class CadastroCozinhaIntegrationTests {
 
@@ -19,7 +24,7 @@ class CadastroCozinhaIntegrationTests {
 	private CadastroCozinhaService cadastroCozinha;
 
 	@Test
-	public void testarCadastroCozinhaComSucesso() {
+	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
 //		cenário
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome("Chinesa");
@@ -33,7 +38,7 @@ class CadastroCozinhaIntegrationTests {
 	}
 	
 	@Test
-	public void testarCadastroCozinhaSemNome() {
+	public void deveFalhar_QuandoCadastrarCozinhaSemNome() {
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome(null);
 		
