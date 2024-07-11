@@ -14,70 +14,59 @@ import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 
-// Sugestão padrão nome métodos
-// givenJaExisteCozinhaChinesa_WhenCadastroCozinhaChinesa_ThenDeveFalhar()
-// shouldComportamentoEsperado_WhenEstadoEmTeste()
-// deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos()
-
 @SpringBootTest
-class CadastroCozinhaIntegrationTests {
+public class CadastroCozinhaIT {
 
 	@Autowired
 	private CadastroCozinhaService cadastroCozinha;
-
+	
 	@Test
 	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
-//		cenário
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome("Chinesa");
 		
-//		ação
 		novaCozinha = cadastroCozinha.salvar(novaCozinha);
 		
-//		validação
 		assertThat(novaCozinha).isNotNull();
 		assertThat(novaCozinha.getId()).isNotNull();
 	}
-	
+
 	@Test
-	public void deveFalhar_QuandoCadastrarCozinhaSemNome() {
+	public void testarCadastroCozinhaSemNome() {
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome(null);
-		
-		ConstraintViolationException erroEsperado = Assertions.assertThrows(
-				ConstraintViolationException.class, () -> {cadastroCozinha.salvar(novaCozinha);});
+
+		ConstraintViolationException erroEsperado =
+				Assertions.assertThrows(ConstraintViolationException.class, () -> {
+					cadastroCozinha.salvar(novaCozinha);
+				});
 
 		assertThat(erroEsperado).isNotNull();
 	}
 	
 	@Test
 	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
-//		cenário
-//		Cozinha cozinhaEmUso = new Cozinha();
-//		cozinhaEmUso.setId(1L);
 
-//		ação
-		EntidadeEmUsoException erroEsperado = 
+		EntidadeEmUsoException erroEsperado =
 				Assertions.assertThrows(EntidadeEmUsoException.class, () -> {
 					cadastroCozinha.excluir(1L);
-					});
+				});
 
-//		validação
 		assertThat(erroEsperado).isNotNull();
+
 	}
-	
+
 	@Test
 	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
-//		cenário
-		
-//		ação
-		CozinhaNaoEncontradaException erroEsperado = 
+
+
+		CozinhaNaoEncontradaException erroEsperado =
 				Assertions.assertThrows(CozinhaNaoEncontradaException.class, () -> {
 					cadastroCozinha.excluir(100L);
-					});
-		
-//		validação
+				});
+
 		assertThat(erroEsperado).isNotNull();
+
 	}
 
 }
