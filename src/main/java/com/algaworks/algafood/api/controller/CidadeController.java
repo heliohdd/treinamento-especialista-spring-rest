@@ -49,10 +49,10 @@ public class CidadeController {
 	    return cidadeModelAssembler.toCollectionModel(todasCidades);
 	}
 	
-	@GetMapping
-	public List<Cidade> buscar(){
-		return cidadeRepository.findAll();
-	}
+//	@GetMapping
+//	public List<Cidade> buscar(){
+//		return cidadeRepository.findAll();
+//	}
 	
 	@GetMapping("/{cidadeId}")
 	public CidadeModel buscar(@PathVariable Long cidadeId) {
