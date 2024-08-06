@@ -20,6 +20,7 @@ import com.algaworks.algafood.api.assembler.RestauranteInputDisassembler;
 import com.algaworks.algafood.api.assembler.RestauranteModelAssembler;
 import com.algaworks.algafood.api.model.RestauranteModel;
 import com.algaworks.algafood.api.model.input.RestauranteInput;
+import com.algaworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.exception.RestauranteNaoEncontradoException;
@@ -62,7 +63,7 @@ public class RestauranteController {
 			Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
 			
 			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restaurante));
-		} catch (RestauranteNaoEncontradoException e) {
+		} catch (RestauranteNaoEncontradoException | CidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
 	}
@@ -72,16 +73,12 @@ public class RestauranteController {
 			@RequestBody @Valid RestauranteInput restauranteInput) {
 		
 		try {
-//		Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
 		Restaurante restauranteAtual = cadastroRestaurante.buscarOuFalhar(restauranteId);
 		
 		restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
 
-//		BeanUtils.copyProperties(restaurante, restauranteAtual, 
-//				"id", "formasPagamento", "endereco", "dataCadastro", "produtos");
-
 			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restauranteAtual));
-		} catch (CozinhaNaoEncontradaException e) {
+		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
 		 	throw new NegocioException(e.getMessage());
 		}
 	}
