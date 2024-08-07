@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.algaworks.algafood.api.model.EnderecoModel;
-import com.algaworks.algafood.api.model.RestauranteModel;
 import com.algaworks.algafood.domain.model.Endereco;
-import com.algaworks.algafood.domain.model.Restaurante;
 
 @Configuration
 public class ModelMapperConfig {
@@ -15,9 +13,6 @@ public class ModelMapperConfig {
 	@Bean
 	ModelMapper modelMapper() {
 		var modelMapper = new ModelMapper(); 
-		
-//		modelMapper.createTypeMap(Restaurante.class, RestauranteModel.class)
-//			.addMapping(Restaurante::getTaxaFrete, RestauranteModel::setPrecoFrete);
 		
 		var enderecoToEnderecoModelTypeMap = modelMapper.createTypeMap(
 				Endereco.class, EnderecoModel.class);
