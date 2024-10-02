@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Getter;
 import lombok.Setter;
 
-@JsonFilter(value = "pedidoFilter")
 @Setter
 @Getter
 public class PedidoResumoModel {
