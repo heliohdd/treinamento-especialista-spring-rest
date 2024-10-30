@@ -5,9 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +31,7 @@ import com.algaworks.algafood.domain.repository.RestauranteRepository;
 import com.algaworks.algafood.domain.service.CadastroRestauranteService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/restaurantes")
 public class RestauranteController {
@@ -50,20 +50,15 @@ public class RestauranteController {
 
 	@JsonView(value = RestauranteView.Resumo.class)
 	@GetMapping
-	public ResponseEntity<List<RestauranteModel>> listar() {
-		List<RestauranteModel> restaurantesModel = restauranteModelAssembler
-				.toCollectionModel(restauranteRepository.findAll());
-		
-		return ResponseEntity.ok()
-				.header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://www.algafood.local:8000")
-				.body(restaurantesModel);
+	public List<RestauranteModel> listar() {
+		return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
 	}
 
-//	@JsonView(value = RestauranteView.ApenasNome.class)
-//	@GetMapping(params = "projecao=apenas-nome")
-//	public List<RestauranteModel> listarApenasNomes() {
-//		return listar();
-//	}
+	@JsonView(value = RestauranteView.ApenasNome.class)
+	@GetMapping(params = "projecao=apenas-nome")
+	public List<RestauranteModel> listarApenasNomes() {
+		return listar();
+	}
 	
 	@GetMapping("{restauranteId}")
 	public RestauranteModel buscar(@PathVariable Long restauranteId) {
